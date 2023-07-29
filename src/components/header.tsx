@@ -1,7 +1,9 @@
 export default function Header() {
     return (
         <header>
-            <h1>これやろう</h1>
+            <a href="/">
+                <h1>これやろう</h1>
+            </a>
             <nav>
                 <ul>
                     <li>HOME</li>

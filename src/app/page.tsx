@@ -1,27 +1,25 @@
 import Image from 'next/image'
-import Task from '@/components/task';
+import Project from '@/components/project';
 
 export default function Home() {
+  const projectData:
+  {
+    id: number,
+    name: string,
+    date: Date
+  } = {
+    id: 1,
+    name: "sample1",
+    date: new Date()
+  }
   return (
-    <main>
+    <>
+      <h1>プロジェクト一覧</h1>
       <ul>
         <li>
-          <h2>いつかやらなきゃ</h2>
-          <Task />
-        </li>
-        <li>
-          <h2>今週中にやらなきゃ</h2>
-          <Task />
-        </li>
-        <li>
-          <h2>今、頑張ってます！</h2>
-          <Task />
-        </li>
-        <li>
-          <h2>終わったー！</h2>
-          <Task />
+          <Project id={projectData.id} date={projectData.date}>{projectData.name}</Project>
         </li>
       </ul>
-    </main>
+    </>
   );
 }
