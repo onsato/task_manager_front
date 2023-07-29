@@ -1,24 +1,32 @@
 import Image from 'next/image'
 import Project from '@/components/project';
+import {ProjectData} from '@/common/Types';
 
 export default function Home() {
-  const projectData:
-  {
-    id: number,
-    name: string,
-    date: Date
-  } = {
+  const projectDatas: ProjectData[] = [{
     id: 1,
     name: "sample1",
     date: new Date()
-  }
+  },
+  {
+    id: 2,
+    name: "sample2",
+    date: new Date()
+  },
+  {
+    id: 3,
+    name: "sample3",
+    date: new Date()
+  }]
   return (
     <>
       <h1>プロジェクト一覧</h1>
       <ul>
+      {projectDatas.map((projectData) => (
         <li>
-          <Project id={projectData.id} date={projectData.date}>{projectData.name}</Project>
+          <Project projectdata={projectData}>{projectData.name}</Project>
         </li>
+      ))}
       </ul>
     </>
   );
