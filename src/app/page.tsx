@@ -24,7 +24,7 @@ export default function Home() {
       <ul>
       {projectDatas.map((projectData) => (
         <li>
-          <Project projectdata={projectData}>{projectData.name}</Project>
+          <Project projectData={projectData} />
         </li>
       ))}
       </ul>

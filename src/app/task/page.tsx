@@ -1,63 +1,20 @@
 import fetch from 'node-fetch';
 import Task from '@/components/task';
+import { TaskDetail } from '@/common/Types';
 
-type TaskProps = {
-    taskName: string
-}
-
-export default function TaskManagement (data: TaskProps) {
-    const taskName = fetch('http://localhost:4000')
-    .then(response => response.json())
-    .then(data => data.taskName);
-    console.log("レスポンスデータ：", data);
-
-    // if (!data.taskName) {
-    //     return <div>Loading...</div>;
-    // }
-
+export default function TaskManagement ({ searchParams: { project_id, task_id }}: { searchParams: {project_id: number, task_id: number} }) {
+    const taskDetail: TaskDetail = {
+        id: task_id,
+        name: "task" + task_id,
+        deadLine: new Date(),
+        message: "あれやるこれやる"
+    }
     return (
         <div>
-            <h1>プロジェクト名</h1>
-        <ul>
-            <li>
-                <h2>いつかやらなきゃ</h2>
-                <Task taskName={data.taskName} />
-            </li>
-            <li>
-                <h2>今週中にやらなきゃ</h2>
-                <Task taskName={data.taskName} />
-            </li>
-            <li>
-                <h2>今、頑張ってます！</h2>
-                <Task taskName={data.taskName} />
-            </li>
-            <li>
-                <h2>終わったー！</h2>
-                <Task taskName={data.taskName} />
-            </li>
-        </ul>
+            <h1>プロジェクト名：{"sample" + project_id}</h1>
+            <h2>タスク名：{taskDetail.name}</h2>
+            <p>締め切り：{taskDetail.deadLine.toLocaleDateString()}</p>
+            <p>内容：{taskDetail.message}</p>
         </div>
     );
 }
-
-export async function getServerComponent(context) {
-    console.log("ここ呼ばれてる？")
-    const res = await fetch('http://localhost:4000');
-    const data = await res.json();
-    console.log(data);
-  
-    return { props: { data } };
-  }
-
-// async function getTaskProps() {
-//     console.log("Propsを呼んでます");
-//     const data = {
-//         TaskName: "sample",
-//     }
-    
-//     return {
-//         props: {
-//             TaskName: data.TaskName,
-//         },
-//     };
-//   }
